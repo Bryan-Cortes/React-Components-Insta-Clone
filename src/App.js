@@ -8,8 +8,9 @@
 import React, { useState } from 'react';
 // Import the Posts (plural!) and SearchBar components, since they are used inside App component
 // Import the dummyData
-import Post from "./components/Posts/Post.js" 
+import Posts from "./components/Posts/Posts.js" 
 import SearchBar from "./components/SearchBar/SearchBar.js"
+
 import dummyData from "./dummy-data.js"
 import './App.css';
 
@@ -21,7 +22,7 @@ const App = () => {
   const {id, likes} = posts;
   const [searchTerm, setSearchterm] = useState(' ');
 
-  const likePost = postId => {
+  const likePost = (postId) => {
     /*
       This function serves the purpose of increasing the number of likes by one, of the post with a given id.
 
@@ -37,7 +38,7 @@ const App = () => {
 
     setPosts(
       posts.map((post)=>{
-      return post === id ? {...post, likes: likes + 1} : post
+      return post === posts.id ? {...posts, likes: likes + 1} : posts
     })
   );
 
@@ -51,10 +52,11 @@ const App = () => {
     <div className='App'>
       {/* Add SearchBar and Posts here to render them */}
       <SearchBar />
-
+      <Posts posts={posts} likePost={likePost} />
       {/* Check the implementation of each component, to see what props they require, if any! */}
-
-      <Post post={posts} likePost={likePost} />
+    
+      
+      
     </div>
   );
 };
